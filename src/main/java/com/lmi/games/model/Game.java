@@ -13,19 +13,15 @@ public class Game implements Identifiable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private Map<Long, Player> players = new ConcurrentHashMap<Long, Player>();
+	private Map<String, Player> players = new ConcurrentHashMap<String, Player>();
 	private Map<Long, Deck> decks = new ConcurrentHashMap<Long, Deck>();
 
-	public Game(Long id) {
-		this.id = id;
-	}
-
 	public void addPlayer(Player player) {
-		players.put(player.getId(), player);
+		players.put(player.getLogin(), player);
 	}
 
 	public void removePlayer(Player player) {
-		players.remove(player.getId());
+		players.remove(player.getLogin());
 
 		// When a player is removed from a game, all their cards should be returned to the game deck.
 		// TODO: Implement this logic here
@@ -37,9 +33,9 @@ public class Game implements Identifiable {
 	 * @param Long playerId - Player ID
 	 * @return A card from the deck.
 	 */
-	public Card dealCard(Long playerId) {
+	public Card dealCard(String playerLogin) {
 		Card dealtCard = null;
-		Player player = players.get(playerId);
+		Player player = players.get(playerLogin);
 		for (Deck deck : decks.values()) { // Iterate over game decks.
 			dealtCard = deck.dealCard(player);
 			if (dealtCard != null)

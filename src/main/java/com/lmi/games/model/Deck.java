@@ -25,8 +25,7 @@ public class Deck implements Identifiable {
 		return id;
 	}
 
-	public Deck(Long id) {
-		this.id = id;
+	public Deck() {
 		init();
 	}
 

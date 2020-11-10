@@ -8,24 +8,17 @@ import java.util.List;
  * 
  * @author silvinoneto
  */
-public class Player implements Identifiable {
+public class Player {
 
-	private static final long serialVersionUID = 1L;
-
-	private Long id;
+	private String login;
 	private String name;
 	private List<Card> cards = new ArrayList<Card>();
 
-	public Player(Long id, String name) {
-		this.id = id;
+	public Player(String login, String name) {
+		this.login = login;
 		this.name = name;
 	}
 	
-	@Override
-	public Long getId() {
-		return id;
-	}
-
 	public void addCard(Card card) {
 		cards.add(card);
 	}
@@ -33,14 +26,12 @@ public class Player implements Identifiable {
 	public List<Card> getCards() {
 		return cards;
 	}
+
+	public String getLogin() {
+		return login;
+	}
 	
 	public String getName() {
 		return name;
 	}
-
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 }

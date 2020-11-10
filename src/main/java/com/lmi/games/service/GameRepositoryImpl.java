@@ -28,8 +28,8 @@ public class GameRepositoryImpl extends MemoryRepository<Game> implements GameRe
 	}
 
 	@Override
-	public Deck createDeck(Deck deck) {
-		deck.setId(deckIDGenerator.getNextId());
+	public Deck createDeck() {
+		Deck deck = new Deck(deckIDGenerator.getNextId());
 		decks.put(deck.getId(), deck);
 		return deck;
 	}

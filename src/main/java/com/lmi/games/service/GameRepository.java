@@ -12,7 +12,7 @@ public interface GameRepository {
 
 	public Game createGame(Game game);
 
-	public Deck createDeck(Deck deck);
+	public Deck createDeck();
 
 	public boolean removeGame(Long gameId);
 

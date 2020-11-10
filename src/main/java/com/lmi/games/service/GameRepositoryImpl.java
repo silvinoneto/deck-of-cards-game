@@ -1,4 +1,4 @@
-package com.lmi.games.persistence;
+package com.lmi.games.service;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -35,7 +35,19 @@ public class GameRepositoryImpl extends MemoryRepository<Game> implements GameRe
 	}
 
 	@Override
-	public boolean removeGame(Game game) {
-		return remove(game.getId());
+	public boolean removeGame(Long gameId) {
+		return remove(gameId);
 	}
+
+	@Override
+	public Game findGame(Long id) {
+		return findById(id);
+	}
+
+	@Override
+	public Deck findDeck(Long id) {
+		return decks.get(id);
+	}
+
+	
 }

@@ -1,4 +1,4 @@
-package com.lmi.games.persistence;
+package com.lmi.games.service;
 
 import java.util.concurrent.atomic.AtomicLong;
 

@@ -16,12 +16,16 @@ public class Game implements Identifiable {
 	private Map<String, Player> players = new ConcurrentHashMap<String, Player>();
 	private Map<Long, Deck> decks = new ConcurrentHashMap<Long, Deck>();
 
-	public void addPlayer(Player player) {
-		players.put(player.getLogin(), player);
+	public void addPlayer(String playerLogin) {
+		if (players.containsKey(playerLogin))
+			throw new IllegalArgumentException("This login is already taken, please use a different one.");
+		players.put(playerLogin, new Player(playerLogin));
 	}
 
-	public void removePlayer(Player player) {
-		players.remove(player.getLogin());
+	public void removePlayer(String playerLogin) {
+		Player player = players.remove(playerLogin);
+		if (player == null)
+			throw new IllegalArgumentException("Player not found");
 
 		// When a player is removed from a game, all their cards should be returned to the game deck.
 		// TODO: Implement this logic here
@@ -46,6 +50,15 @@ public class Game implements Identifiable {
 
 	public void addDeck(Deck deck) {
 		decks.put(deck.getId(), deck);
+	}
+
+	/**
+	 * Shuffle the game deck.
+	 */
+	public void shuffleDeck() {
+		for (Deck deck : decks.values()) { // Iterate over game decks.
+			deck.shuffle();
+		}
 	}
 
 	@Override

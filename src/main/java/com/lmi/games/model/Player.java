@@ -11,12 +11,10 @@ import java.util.List;
 public class Player {
 
 	private String login;
-	private String name;
 	private List<Card> cards = new ArrayList<Card>();
 
-	public Player(String login, String name) {
+	public Player(String login) {
 		this.login = login;
-		this.name = name;
 	}
 	
 	public void addCard(Card card) {
@@ -29,9 +27,5 @@ public class Player {
 
 	public String getLogin() {
 		return login;
-	}
-	
-	public String getName() {
-		return name;
 	}
 }

@@ -1,4 +1,4 @@
-package com.lmi.games.persistence;
+package com.lmi.games.service;
 
 import com.lmi.games.model.Deck;
 import com.lmi.games.model.Game;
@@ -14,5 +14,9 @@ public interface GameRepository {
 
 	public Deck createDeck(Deck deck);
 
-	public boolean removeGame(Game game);
+	public boolean removeGame(Long gameId);
+
+	public Game findGame(Long id);
+
+	public Deck findDeck(Long id);
 }

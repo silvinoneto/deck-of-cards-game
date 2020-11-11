@@ -52,3 +52,5 @@ NOTE: The path variables placeholder should be replaced by actual values.
 ``` curl -H "Content-Type: application/json" -XGET -d "{}" http://localhost:8080/games/{id}/get-undealt-cards-count-by-suit-and-value ```
 - Delete a Game<br />
 ``` curl -H "Content-Type: application/json" -XDELETE -d "{}" http://localhost:8080/games/{id} ```
+
+You can also find a few test examples in the following [Postman Collection](https://github.com/silvinoneto/deck-of-cards-game/blob/main/Cards_Game_REST_API.postman_collection.json).

@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * 
+ * This exception class is used when a resource already exists.
  * 
  * @author silvinoneto
  */

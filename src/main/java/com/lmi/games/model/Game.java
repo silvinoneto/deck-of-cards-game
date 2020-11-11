@@ -29,10 +29,12 @@ public class Game implements Identifiable {
 	 * 
 	 * @param playerLogin
 	 */
-	public void addPlayer(String playerLogin) {
+	public Player addPlayer(String playerLogin) {
 		if (players.containsKey(playerLogin))
 			throw new IllegalArgumentException("This login is already taken, please use a different one.");
-		players.put(playerLogin, new Player(playerLogin));
+		Player newPlayer = new Player(playerLogin);
+		players.put(playerLogin, newPlayer);
+		return newPlayer;
 	}
 
 	/**

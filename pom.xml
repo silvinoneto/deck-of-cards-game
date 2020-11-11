@@ -43,6 +43,29 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+      		<plugin>
+        		<groupId>org.codehaus.mojo</groupId>
+        		<artifactId>build-helper-maven-plugin</artifactId>
+        		<version>1.5</version>
+        		<executions>
+          			<execution>
+            			<id>add-test-source</id>
+            			<!--
+                			This will help m2eclipse to recognize the folder as source
+                			folder after update project configuration.
+            			-->
+            			<phase>process-resources</phase>
+            			<goals>
+              				<goal>add-test-source</goal>
+            			</goals>
+            			<configuration>
+              				<sources>
+                				<source>src/test/java</source>
+              				</sources>
+            			</configuration>
+          			</execution>
+        		</executions>
+      		</plugin>
 		</plugins>
 	</build>
 

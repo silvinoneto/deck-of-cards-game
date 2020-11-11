@@ -51,46 +51,47 @@ public class GameController {
 	}
 
 	@RequestMapping(value = "/{id}/deck/{deckId}", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<Game> addDeck(@PathVariable Long id, @PathVariable Long deckId) {
+	public ResponseEntity<Deck> addDeck(@PathVariable Long id, @PathVariable Long deckId) {
 		Game game = repository.findGame(id);
 		Deck deck = repository.findDeck(deckId);
 		if (game == null || deck == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		game.addDeck(deck);
-		return new ResponseEntity<>(game, HttpStatus.OK);
+		return new ResponseEntity<>(deck, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}/player/{login}", method = RequestMethod.POST, consumes = "application/json")
-	public ResponseEntity<Game> addPlayer(@PathVariable Long id, @PathVariable String login) {
+	public ResponseEntity<Player> addPlayer(@PathVariable Long id, @PathVariable String login) {
 		Game game = repository.findGame(id);
+		Player player = null;
 		if (game == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		HttpStatus status = HttpStatus.OK;
 		try {
-			game.addPlayer(login);
+			player = game.addPlayer(login);
 		}
 		catch (IllegalArgumentException e) {
 			status = HttpStatus.CONFLICT;
 		}
-		return new ResponseEntity<>(game, status);
+		return new ResponseEntity<>(player, status);
 	}
 
 	@RequestMapping(value = "/{id}/player/{login}", method = RequestMethod.DELETE, consumes = "application/json")
-	public ResponseEntity<Game> deletePlayer(@PathVariable Long id, @PathVariable String login) {
+	public ResponseEntity<Player> deletePlayer(@PathVariable Long id, @PathVariable String login) {
 		Game game = repository.findGame(id);
 		if (game == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		HttpStatus status = HttpStatus.OK;
+		HttpStatus status = HttpStatus.NO_CONTENT;
 		try {
 			game.removePlayer(login);
 		}
 		catch (IllegalArgumentException e) {
 			status = HttpStatus.NOT_FOUND;
 		}
-		return new ResponseEntity<>(game, status);
+		return new ResponseEntity<>(status);
 	}
 
 	@RequestMapping(value = "/{id}/shuffleDeck", method = RequestMethod.POST, consumes = "application/json")

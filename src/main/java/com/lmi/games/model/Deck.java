@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Deck implements Identifiable {
 
 	public static final int DECK_SIZE = 52;
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private Long id;

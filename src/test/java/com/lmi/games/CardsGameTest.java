@@ -46,7 +46,7 @@ public class CardsGameTest {
 	@Order(1)
 	public void testCreateGame() throws Exception {
 		this.mockMvc.perform(
-			post("/game")
+			post("/games")
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -61,7 +61,7 @@ public class CardsGameTest {
 	@Order(2)
 	public void testCreateDecks() throws Exception {
 		this.mockMvc.perform(
-			post("/deck")
+			post("/decks")
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -72,7 +72,7 @@ public class CardsGameTest {
 		);
 
 		this.mockMvc.perform(
-			post("/deck")
+			post("/decks")
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -87,7 +87,7 @@ public class CardsGameTest {
 	@Order(3)
 	public void testAddDecks() throws Exception {
 		this.mockMvc.perform(
-			post("/game/" + gameId + "/deck/" + firstDeck)
+			post("/games/" + gameId + "/decks/" + firstDeck)
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -98,7 +98,7 @@ public class CardsGameTest {
 		);
 
 		this.mockMvc.perform(
-				post("/game/" + gameId + "/deck/" + secondDeck)
+				post("/games/" + gameId + "/decks/" + secondDeck)
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -113,7 +113,7 @@ public class CardsGameTest {
 	@Order(4)
 	public void testShuffleDecks() throws Exception {
 		this.mockMvc.perform(
-			post("/game/" + gameId + "/shuffleDeck")
+			post("/games/" + gameId + "/shuffle-deck")
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -126,7 +126,7 @@ public class CardsGameTest {
 	@Order(5)
 	public void testAddPlayers() throws Exception {
 		this.mockMvc.perform(
-			post("/game/" + gameId + "/player/" + firstPlayerLogin)
+			post("/games/" + gameId + "/players/" + firstPlayerLogin)
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -137,7 +137,7 @@ public class CardsGameTest {
 		);
 
 		this.mockMvc.perform(
-			post("/game/" + gameId + "/player/" + secondPlayerLogin)
+			post("/games/" + gameId + "/players/" + secondPlayerLogin)
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -148,7 +148,7 @@ public class CardsGameTest {
 		);
 
 		this.mockMvc.perform(
-			post("/game/" + gameId + "/player/" + thirdPlayerLogin)
+			post("/games/" + gameId + "/players/" + thirdPlayerLogin)
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -163,7 +163,7 @@ public class CardsGameTest {
 	@Order(6)
 	public void testDeletePlayer() throws Exception {
 		this.mockMvc.perform(
-			delete("/game/" + gameId + "/player/" + thirdPlayerLogin)
+			delete("/games/" + gameId + "/players/" + thirdPlayerLogin)
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -176,7 +176,7 @@ public class CardsGameTest {
 	public void testDealCards() throws Exception {
 		for (int i = 0; i < 5; i++) {
 			this.mockMvc.perform(
-				get("/game/" + gameId + "/player/" + firstPlayerLogin + "/dealCard")
+				get("/games/" + gameId + "/players/" + firstPlayerLogin + "/deal-card")
 					.accept(MEDIA_TYPE_JSON_UTF8)
 					.contentType(MEDIA_TYPE_JSON_UTF8)
 					.content("{}"))
@@ -184,7 +184,7 @@ public class CardsGameTest {
 						.andExpect(status().isOk());
 
 			this.mockMvc.perform(
-				get("/game/" + gameId + "/player/" + secondPlayerLogin + "/dealCard")
+				get("/games/" + gameId + "/players/" + secondPlayerLogin + "/deal-card")
 					.accept(MEDIA_TYPE_JSON_UTF8)
 					.contentType(MEDIA_TYPE_JSON_UTF8)
 					.content("{}"))
@@ -197,7 +197,7 @@ public class CardsGameTest {
 	@Order(8)
 	public void testGetCards() throws Exception {
 		this.mockMvc.perform(
-			get("/game/" + gameId + "/player/" + firstPlayerLogin + "/getCards")
+			get("/games/" + gameId + "/players/" + firstPlayerLogin + "/get-cards")
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -205,7 +205,7 @@ public class CardsGameTest {
 					.andExpect(status().isOk());
 
 		this.mockMvc.perform(
-			get("/game/" + gameId + "/player/" + secondPlayerLogin + "/getCards")
+			get("/games/" + gameId + "/players/" + secondPlayerLogin + "/get-cards")
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -217,7 +217,7 @@ public class CardsGameTest {
 	@Order(9)
 	public void testGetPlayersSortedByTotalValue() throws Exception {
 		this.mockMvc.perform(
-			get("/game/" + gameId + "/getPlayersSortedByTotalValue")
+			get("/games/" + gameId + "/get-players-sorted-by-total-value")
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -229,7 +229,7 @@ public class CardsGameTest {
 	@Order(10)
 	public void testGetUndealtCardsCountBySuit() throws Exception {
 		this.mockMvc.perform(
-			get("/game/" + gameId + "/getUndealtCardsCountBySuit")
+			get("/games/" + gameId + "/get-undealt-cards-count-by-suit")
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -241,7 +241,7 @@ public class CardsGameTest {
 	@Order(11)
 	public void testGetUndealtCardsCountBySuitAndValue() throws Exception {
 		this.mockMvc.perform(
-			get("/game/" + gameId + "/getUndealtCardsCountBySuitAndValue")
+			get("/games/" + gameId + "/get-undealt-cards-count-by-suit-and-value")
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))
@@ -253,7 +253,7 @@ public class CardsGameTest {
 	@Order(12)
 	public void testDeleteGame() throws Exception {
 		this.mockMvc.perform(
-			delete("/game/" + gameId)
+			delete("/games/" + gameId)
 				.accept(MEDIA_TYPE_JSON_UTF8)
 				.contentType(MEDIA_TYPE_JSON_UTF8)
 				.content("{}"))

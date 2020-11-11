@@ -1,4 +1,4 @@
-package com.lmi.games.service;
+package com.lmi.games.data;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

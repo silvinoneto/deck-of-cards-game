@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lmi.games.model.Deck;
-import com.lmi.games.service.GameRepository;
+import com.lmi.games.service.GameService;
 
 /**
  * Deck REST controller component.
@@ -18,15 +18,15 @@ import com.lmi.games.service.GameRepository;
  */
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value = "/deck", produces = "application/json")
+@RequestMapping(value = "/decks", produces = "application/json")
 public class DeckController {
 
 	@Autowired
-	private GameRepository repository;
+	private GameService service;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<Deck> createGame() {
-		Deck newDeck = repository.createDeck();
+		Deck newDeck = service.createDeck();
 		return new ResponseEntity<>(newDeck, HttpStatus.CREATED);
 	}
 

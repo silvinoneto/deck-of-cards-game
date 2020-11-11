@@ -30,8 +30,6 @@ public class Game implements Identifiable {
 	 * @param playerLogin
 	 */
 	public Player addPlayer(String playerLogin) {
-		if (players.containsKey(playerLogin))
-			throw new IllegalArgumentException("This login is already taken, please use a different one.");
 		Player newPlayer = new Player(playerLogin);
 		players.put(playerLogin, newPlayer);
 		return newPlayer;
@@ -42,15 +40,13 @@ public class Game implements Identifiable {
 	 * 
 	 * @param playerLogin
 	 */
-	public void removePlayer(String playerLogin) {
-		Player player = getPlayer(playerLogin);
-
+	public void removePlayer(Player player) {
 		// When a player is removed from a game, all their cards should be returned to the game deck.
 		for (Card card : player.getCards()) {
 			Deck cardDeck = decks.get(card.getDeckId());
 			cardDeck.returnCard(card);
 		}
-		players.remove(playerLogin); // Removes a player from the game players list.
+		players.remove(player.getLogin()); // Removes a player from the game players list.
 	}
 
 	/**
@@ -61,9 +57,6 @@ public class Game implements Identifiable {
 	 */
 	public Player getPlayer(String playerLogin) {
 		Player player = players.get(playerLogin);
-		if (player == null)
-			throw new IllegalArgumentException("Player not found");
-
 		return player;
 	}
 

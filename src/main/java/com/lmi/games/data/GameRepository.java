@@ -1,4 +1,4 @@
-package com.lmi.games.service;
+package com.lmi.games.data;
 
 import com.lmi.games.model.Deck;
 import com.lmi.games.model.Game;
@@ -14,7 +14,7 @@ public interface GameRepository {
 
 	public Deck createDeck();
 
-	public boolean removeGame(Long gameId);
+	public boolean removeGame(Game game);
 
 	public Game findGame(Long id);
 

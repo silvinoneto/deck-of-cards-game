@@ -1,4 +1,4 @@
-package com.lmi.games.service;
+package com.lmi.games.resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import java.util.Map.Entry;
 import org.springframework.stereotype.Component;
 
 import com.lmi.games.model.Card;
-import com.lmi.games.resource.CardResource;
 
 /**
  * Component responsible for converting a Map of Cards into a Card resource list.

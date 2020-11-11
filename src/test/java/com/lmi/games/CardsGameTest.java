@@ -17,7 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.lmi.games.presentation.GameController;
+import com.lmi.games.controller.GameController;
 
 /**
  * Card Games REST API Unit Test class.

@@ -1,4 +1,4 @@
-package com.lmi.games.presentation;
+package com.lmi.games.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.lmi.games.presentation;
+package com.lmi.games.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -18,8 +18,8 @@ import com.lmi.games.model.Deck;
 import com.lmi.games.model.Game;
 import com.lmi.games.model.Player;
 import com.lmi.games.model.Suit;
+import com.lmi.games.resource.CardListResourceAssembler;
 import com.lmi.games.resource.CardResource;
-import com.lmi.games.service.CardListResourceAssembler;
 import com.lmi.games.service.GameRepository;
 
 /**
